@@ -1,5 +1,5 @@
 {
-  "name": "socketcluster-client",
+  "name": "socketcluster-es6-client",
   "description": "SocketCluster JavaScript client",
   "version": "14.1.0",
   "homepage": "http://socketcluster.io",
@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/SocketCluster/socketcluster-client.git"
+    "url": "git://github.com/SocketCluster/socketcluster-es6-client.git"
   },
   "scripts": {
     "build": "gulp browserify; gulp minify",

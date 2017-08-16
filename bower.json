@@ -1,8 +1,8 @@
 {
-  "name": "socketcluster-client",
+  "name": "socketcluster-es6-client",
   "main": "socketcluster.js",
   "version": "7.0.1",
-  "homepage": "https://github.com/SocketCluster/socketcluster-client",
+  "homepage": "https://github.com/SocketCluster/socketcluster-es6-client",
   "description": "SocketCluster JavaScript client",
   "authors": [
     "Jonathan Gros-Dubois <grosjona@yahoo.com.au>"

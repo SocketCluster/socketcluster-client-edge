@@ -13,10 +13,10 @@ SocketCluster Client is the client-side component of SocketCluster.
 To install, run:
 
 ```bash
-npm install socketcluster-es6-client
+npm install socketcluster-client-edge
 ```
 
-The socketcluster-es6-client script is called socketcluster.js (located in the main socketcluster-es6-client directory)
+The socketcluster-client-edge script is called socketcluster.js (located in the main socketcluster-client-edge directory)
 - You should include it in your HTML page using a &lt;script&gt; tag in order to interact with SocketCluster.
 
 To build SocketCluster Client with browserify, use:
@@ -167,7 +167,7 @@ To build SocketCluster Client with Gulp, use:
 
 ## Change log
 
-See the 'releases' section for changes: https://github.com/SocketCluster/socketcluster-es6-client/releases
+See the 'releases' section for changes: https://github.com/SocketCluster/socketcluster-client-edge/releases
 
 ## License
 

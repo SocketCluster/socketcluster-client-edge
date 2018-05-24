@@ -1,5 +1,5 @@
 {
-  "name": "socketcluster-es6-client",
+  "name": "socketcluster-client-edge",
   "description": "SocketCluster JavaScript client",
   "version": "7.0.1",
   "homepage": "http://socketcluster.io",
@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/SocketCluster/socketcluster-es6-client.git"
+    "url": "git://github.com/SocketCluster/socketcluster-client-edge.git"
   },
   "scripts": {
     "build": "browserify -s socketCluster index.js > socketcluster.js; uglifyjs socketcluster.js -o socketcluster.min.js",

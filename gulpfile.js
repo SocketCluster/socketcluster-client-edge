@@ -2,37 +2,47 @@ var gulp = require('gulp');
 var path = require('path');
 var browserify = require('browserify');
 var babel = require('gulp-babel');
-var derequire = require('gulp-derequire');
 var insert = require('gulp-insert');
 var rename = require('gulp-rename');
 var source = require('vinyl-source-stream');
-var uglify = require('gulp-uglify');
+var uglify = require('uglify-es');
+var uglifyComposer = require('gulp-uglify/composer');
+var minify = uglifyComposer(uglify, console);
 var convertNewline = require('gulp-convert-newline');
 
 var BUILD = 'browser';
 var DIST = './';
 var VERSION = require('./package.json').version;
 
+// Add comment. Also, prepend the var keyword to the require variable
+// declaration added by browserify.
 var FULL_HEADER = (
   '/**\n' +
   ' * SocketCluster JavaScript client v' + VERSION + '\n' +
-  ' */\n');
+  ' */\nvar '
+);
+
+var FULL_FOOTER = (
+  '\n' +
+  "export default require('socketcluster-client');" +
+  '\n'
+);
 
 gulp.task('browserify', function (done) {
   var stream = browserify({
       builtins: ['_process', 'events', 'buffer', 'querystring'],
-      entries: 'index.js',
-      standalone: 'socketCluster'
+      entries: 'index.js'
     })
     .ignore('_process')
+    .require('./index.js', {expose: 'socketcluster-client'})
     .bundle();
   return stream.pipe(source('socketcluster.js'))
+    .pipe(insert.prepend(FULL_HEADER))
+    .pipe(insert.append(FULL_FOOTER))
     .pipe(convertNewline({
       newline: 'lf',
       encoding: 'utf8'
     }))
-    .pipe(insert.prepend(FULL_HEADER))
-    .pipe(derequire())
     .pipe(gulp.dest(DIST));
 });
 
@@ -44,7 +54,7 @@ gulp.task('minify', function () {
     .pipe(babel({
       plugins: ['minify-dead-code-elimination']
     }))
-    .pipe(uglify())
+    .pipe(minify())
     .pipe(insert.prepend(FULL_HEADER))
     .pipe(rename({
       extname: '.min.js'

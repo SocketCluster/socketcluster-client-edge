@@ -1,30 +1,7 @@
 /**
  * SocketCluster JavaScript client v14.1.0
  */
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.socketCluster = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(_dereq_,module,exports){
-var SCClientSocket = _dereq_('./lib/scclientsocket');
-var factory = _dereq_('./lib/factory');
-
-module.exports.factory = factory;
-module.exports.SCClientSocket = SCClientSocket;
-
-module.exports.Emitter = _dereq_('component-emitter');
-
-module.exports.create = function (options) {
-  return factory.create(options);
-};
-
-module.exports.connect = module.exports.create;
-
-module.exports.destroy = function (socket) {
-  return factory.destroy(socket);
-};
-
-module.exports.clients = factory.clients;
-
-module.exports.version = '14.1.0';
-
-},{"./lib/factory":3,"./lib/scclientsocket":5,"component-emitter":12}],2:[function(_dereq_,module,exports){
+var require=(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 (function (global){
 var AuthEngine = function () {
   this._internalStorage = {};
@@ -86,11 +63,11 @@ AuthEngine.prototype.loadToken = function (name, callback) {
 module.exports.AuthEngine = AuthEngine;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],3:[function(_dereq_,module,exports){
+},{}],2:[function(require,module,exports){
 (function (global){
-var SCClientSocket = _dereq_('./scclientsocket');
-var scErrors = _dereq_('sc-errors');
-var uuid = _dereq_('uuid');
+var SCClientSocket = require('./scclientsocket');
+var scErrors = require('sc-errors');
+var uuid = require('uuid');
 var InvalidArgumentsError = scErrors.InvalidArgumentsError;
 
 var _clients = {};
@@ -211,8 +188,8 @@ module.exports = {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./scclientsocket":5,"sc-errors":21,"uuid":23}],4:[function(_dereq_,module,exports){
-var scErrors = _dereq_('sc-errors');
+},{"./scclientsocket":4,"sc-errors":20,"uuid":22}],3:[function(require,module,exports){
+var scErrors = require('sc-errors');
 var InvalidActionError = scErrors.InvalidActionError;
 
 var Response = function (socket, id) {
@@ -268,20 +245,20 @@ Response.prototype.callback = function (error, data) {
 
 module.exports.Response = Response;
 
-},{"sc-errors":21}],5:[function(_dereq_,module,exports){
+},{"sc-errors":20}],4:[function(require,module,exports){
 (function (global,Buffer){
-var Emitter = _dereq_('component-emitter');
-var SCChannel = _dereq_('sc-channel').SCChannel;
-var Response = _dereq_('./response').Response;
-var AuthEngine = _dereq_('./auth').AuthEngine;
-var formatter = _dereq_('sc-formatter');
-var SCTransport = _dereq_('./sctransport').SCTransport;
-var querystring = _dereq_('querystring');
-var LinkedList = _dereq_('linked-list');
-var base64 = _dereq_('base-64');
-var clone = _dereq_('clone');
+var Emitter = require('component-emitter');
+var SCChannel = require('sc-channel').SCChannel;
+var Response = require('./response').Response;
+var AuthEngine = require('./auth').AuthEngine;
+var formatter = require('sc-formatter');
+var SCTransport = require('./sctransport').SCTransport;
+var querystring = require('querystring');
+var LinkedList = require('linked-list');
+var base64 = require('base-64');
+var clone = require('clone');
 
-var scErrors = _dereq_('sc-errors');
+var scErrors = require('sc-errors');
 var InvalidArgumentsError = scErrors.InvalidArgumentsError;
 var InvalidMessageError = scErrors.InvalidMessageError;
 var InvalidActionError = scErrors.InvalidActionError;
@@ -1309,12 +1286,12 @@ SCClientSocket.prototype.watchers = function (channelName) {
 
 module.exports = SCClientSocket;
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},_dereq_("buffer").Buffer)
-},{"./auth":2,"./response":4,"./sctransport":6,"base-64":8,"buffer":10,"clone":11,"component-emitter":12,"linked-list":15,"querystring":18,"sc-channel":19,"sc-errors":21,"sc-formatter":22}],6:[function(_dereq_,module,exports){
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
+},{"./auth":1,"./response":3,"./sctransport":5,"base-64":7,"buffer":9,"clone":10,"component-emitter":11,"linked-list":14,"querystring":17,"sc-channel":18,"sc-errors":20,"sc-formatter":21}],5:[function(require,module,exports){
 (function (global){
-var Emitter = _dereq_('component-emitter');
-var Response = _dereq_('./response').Response;
-var querystring = _dereq_('querystring');
+var Emitter = require('component-emitter');
+var Response = require('./response').Response;
+var querystring = require('querystring');
 var WebSocket;
 var createWebSocket;
 
@@ -1324,13 +1301,13 @@ if (global.WebSocket) {
     return new WebSocket(uri);
   };
 } else {
-  WebSocket = _dereq_('ws');
+  WebSocket = require('ws');
   createWebSocket = function (uri, options) {
     return new WebSocket(uri, null, options);
   };
 }
 
-var scErrors = _dereq_('sc-errors');
+var scErrors = require('sc-errors');
 var TimeoutError = scErrors.TimeoutError;
 var BadConnectionError = scErrors.BadConnectionError;
 
@@ -1758,7 +1735,7 @@ SCTransport.prototype.sendObject = function (object, options) {
 module.exports.SCTransport = SCTransport;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./response":4,"component-emitter":12,"querystring":18,"sc-errors":21,"ws":7}],7:[function(_dereq_,module,exports){
+},{"./response":3,"component-emitter":11,"querystring":17,"sc-errors":20,"ws":6}],6:[function(require,module,exports){
 var global;
 if (typeof WorkerGlobalScope !== 'undefined') {
   global = self;
@@ -1795,7 +1772,7 @@ if (WebSocket) ws.prototype = WebSocket.prototype;
 
 module.exports = WebSocket ? ws : null;
 
-},{}],8:[function(_dereq_,module,exports){
+},{}],7:[function(require,module,exports){
 (function (global){
 /*! http://mths.be/base64 v0.1.0 by @mathias | MIT license */
 ;(function(root) {
@@ -1964,7 +1941,7 @@ module.exports = WebSocket ? ws : null;
 }(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],9:[function(_dereq_,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -2117,7 +2094,7 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],10:[function(_dereq_,module,exports){
+},{}],9:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -2128,8 +2105,8 @@ function fromByteArray (uint8) {
 
 'use strict'
 
-var base64 = _dereq_('base64-js')
-var ieee754 = _dereq_('ieee754')
+var base64 = require('base64-js')
+var ieee754 = require('ieee754')
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -3896,7 +3873,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":9,"ieee754":13}],11:[function(_dereq_,module,exports){
+},{"base64-js":8,"ieee754":12}],10:[function(require,module,exports){
 (function (Buffer){
 var clone = (function() {
 'use strict';
@@ -4150,8 +4127,8 @@ if (typeof module === 'object' && module.exports) {
   module.exports = clone;
 }
 
-}).call(this,_dereq_("buffer").Buffer)
-},{"buffer":10}],12:[function(_dereq_,module,exports){
+}).call(this,require("buffer").Buffer)
+},{"buffer":9}],11:[function(require,module,exports){
 
 /**
  * Expose `Emitter`.
@@ -4316,7 +4293,7 @@ Emitter.prototype.hasListeners = function(event){
   return !! this.listeners(event).length;
 };
 
-},{}],13:[function(_dereq_,module,exports){
+},{}],12:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -4402,7 +4379,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],14:[function(_dereq_,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4790,12 +4767,12 @@ ListItemPrototype.append = function (item) {
 
 module.exports = List;
 
-},{}],15:[function(_dereq_,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
-module.exports = _dereq_('./_source/linked-list.js');
+module.exports = require('./_source/linked-list.js');
 
-},{"./_source/linked-list.js":14}],16:[function(_dereq_,module,exports){
+},{"./_source/linked-list.js":13}],15:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4881,7 +4858,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],17:[function(_dereq_,module,exports){
+},{}],16:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4968,14 +4945,14 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],18:[function(_dereq_,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
-exports.decode = exports.parse = _dereq_('./decode');
-exports.encode = exports.stringify = _dereq_('./encode');
+exports.decode = exports.parse = require('./decode');
+exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":16,"./encode":17}],19:[function(_dereq_,module,exports){
-var Emitter = _dereq_('component-emitter');
+},{"./decode":15,"./encode":16}],18:[function(require,module,exports){
+var Emitter = require('component-emitter');
 
 var SCChannel = function (name, client, options) {
   var self = this;
@@ -5046,7 +5023,7 @@ SCChannel.prototype.destroy = function () {
 
 module.exports.SCChannel = SCChannel;
 
-},{"component-emitter":12}],20:[function(_dereq_,module,exports){
+},{"component-emitter":11}],19:[function(require,module,exports){
 // Based on https://github.com/dscape/cycle/blob/master/cycle.js
 
 module.exports = function decycle(object) {
@@ -5127,8 +5104,8 @@ module.exports = function decycle(object) {
     }(object, '$'));
 };
 
-},{}],21:[function(_dereq_,module,exports){
-var decycle = _dereq_('./decycle');
+},{}],20:[function(require,module,exports){
+var decycle = require('./decycle');
 
 var isStrict = (function () { return !this; })();
 
@@ -5455,7 +5432,7 @@ module.exports.hydrateError = function hydrateError(error) {
 
 module.exports.decycle = decycle;
 
-},{"./decycle":20}],22:[function(_dereq_,module,exports){
+},{"./decycle":19}],21:[function(require,module,exports){
 (function (global){
 var base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 var validJSONStartRegex = /^[ \n\r\t]*[{\[]/;
@@ -5553,9 +5530,9 @@ module.exports.encode = function (object) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],23:[function(_dereq_,module,exports){
-var v1 = _dereq_('./v1');
-var v4 = _dereq_('./v4');
+},{}],22:[function(require,module,exports){
+var v1 = require('./v1');
+var v4 = require('./v4');
 
 var uuid = v4;
 uuid.v1 = v1;
@@ -5563,7 +5540,7 @@ uuid.v4 = v4;
 
 module.exports = uuid;
 
-},{"./v1":26,"./v4":27}],24:[function(_dereq_,module,exports){
+},{"./v1":25,"./v4":26}],23:[function(require,module,exports){
 /**
  * Convert array of 16 byte values to UUID string format of the form:
  * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
@@ -5588,7 +5565,7 @@ function bytesToUuid(buf, offset) {
 
 module.exports = bytesToUuid;
 
-},{}],25:[function(_dereq_,module,exports){
+},{}],24:[function(require,module,exports){
 // Unique ID creation requires a high quality random # generator.  In the
 // browser this is a little complicated due to unknown quality of Math.random()
 // and inconsistent support for the `crypto` API.  We do the best we can via
@@ -5622,9 +5599,9 @@ if (getRandomValues) {
   };
 }
 
-},{}],26:[function(_dereq_,module,exports){
-var rng = _dereq_('./lib/rng');
-var bytesToUuid = _dereq_('./lib/bytesToUuid');
+},{}],25:[function(require,module,exports){
+var rng = require('./lib/rng');
+var bytesToUuid = require('./lib/bytesToUuid');
 
 // **`v1()` - Generate time-based UUID**
 //
@@ -5733,9 +5710,9 @@ function v1(options, buf, offset) {
 
 module.exports = v1;
 
-},{"./lib/bytesToUuid":24,"./lib/rng":25}],27:[function(_dereq_,module,exports){
-var rng = _dereq_('./lib/rng');
-var bytesToUuid = _dereq_('./lib/bytesToUuid');
+},{"./lib/bytesToUuid":23,"./lib/rng":24}],26:[function(require,module,exports){
+var rng = require('./lib/rng');
+var bytesToUuid = require('./lib/bytesToUuid');
 
 function v4(options, buf, offset) {
   var i = buf && offset || 0;
@@ -5764,5 +5741,29 @@ function v4(options, buf, offset) {
 
 module.exports = v4;
 
-},{"./lib/bytesToUuid":24,"./lib/rng":25}]},{},[1])(1)
-});
+},{"./lib/bytesToUuid":23,"./lib/rng":24}],"socketcluster-client":[function(require,module,exports){
+var SCClientSocket = require('./lib/scclientsocket');
+var factory = require('./lib/factory');
+
+module.exports.factory = factory;
+module.exports.SCClientSocket = SCClientSocket;
+
+module.exports.Emitter = require('component-emitter');
+
+module.exports.create = function (options) {
+  return factory.create(options);
+};
+
+module.exports.connect = module.exports.create;
+
+module.exports.destroy = function (socket) {
+  return factory.destroy(socket);
+};
+
+module.exports.clients = factory.clients;
+
+module.exports.version = '14.1.0';
+
+},{"./lib/factory":2,"./lib/scclientsocket":4,"component-emitter":11}]},{},["socketcluster-client"]);
+
+export default require('socketcluster-client');
